@@ -1,0 +1,31 @@
+﻿@page
+@model RazorPagesNorthwind.Pages.AboutModel
+
+@{
+    ViewData["Title"] = "Supplier Product Statistics";
+}
+
+    <h2>Supplier Product Statistics</h2>
+
+<table>
+    <tr>
+        <th>
+            Category
+        </th>
+        <th>
+            Products
+        </th>
+    </tr>
+
+    @foreach (var item in Model.Suppliers)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CategoryId)
+            </td>
+            <td>
+                @item.ProductCount
+            </td>
+        </tr>
+    }
+</table>
