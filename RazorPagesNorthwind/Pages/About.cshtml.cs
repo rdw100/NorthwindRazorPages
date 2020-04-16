@@ -19,14 +19,14 @@ namespace RazorPagesNorthwind.Pages
             _context = context;
         }
 
-        public IList<SupplierProductGroup> Suppliers { get; set; }
+        public IList<SupplierProductGroupViewModel> Suppliers { get; set; }
 
         public async Task OnGetAsync()
         {
-            IQueryable<SupplierProductGroup> data =
+            IQueryable<SupplierProductGroupViewModel> data =
                 from product in _context.Products
                 group product by product.CategoryId into productGroup
-                select new SupplierProductGroup()
+                select new SupplierProductGroupViewModel()
                 {
                     CategoryId = (int)productGroup.Key,
                     ProductCount = productGroup.Count()

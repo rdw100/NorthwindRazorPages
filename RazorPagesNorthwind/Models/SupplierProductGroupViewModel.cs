@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace RazorPagesNorthwind.Models
 {
-    public class SupplierProductGroup
+    public class SupplierProductGroupViewModel
     {
         public int CategoryId { get; set; }
         public int ProductCount { get; set; }
