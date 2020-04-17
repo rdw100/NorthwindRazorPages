@@ -24,7 +24,7 @@ namespace RazorPagesNorthwind.Pages.Suppliers
         public string CurrentFilter { get; set; }
         public string CurrentSort { get; set; }
 
-        public PaginatedList<Supplier> Supplier { get;set; }
+        public PaginatedList<Supplier> Supplier { get; set; }
 
         public async Task OnGetAsync(string sortOrder,
             string currentFilter, string searchString, int? pageIndex)
@@ -45,7 +45,7 @@ namespace RazorPagesNorthwind.Pages.Suppliers
             CurrentFilter = searchString;
 
             IQueryable<Supplier> supplierQuery = from s in _context.Suppliers
-                                              select s;
+                                                 select s;
 
             if (!String.IsNullOrEmpty(searchString))
             {

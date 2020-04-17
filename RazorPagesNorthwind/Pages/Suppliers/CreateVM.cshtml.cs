@@ -27,18 +27,18 @@ namespace RazorPagesNorthwind.Pages.Suppliers
         [BindProperty]
         public SupplierViewModel SupplierVM { get; set; }
 
-        public async Task<IActionResult> OnPostAsync()
-        {
-            if (!ModelState.IsValid)
-            {
-                return Page();
-            }
+        //public async Task<IActionResult> OnPostAsync()
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return Page();
+        //    }
 
-            var entry = _context.Add(new Supplier());
-            entry.CurrentValues.SetValues(SupplierVM);
-            await _context.SaveChangesAsync();
-            return RedirectToPage("./Index");
-        }
+        //    var entry = _context.Add(new Supplier());
+        //    entry.CurrentValues.SetValues(SupplierVM);
+        //    await _context.SaveChangesAsync();
+        //    return RedirectToPage("./Index");
+        //}
 
     }
 }

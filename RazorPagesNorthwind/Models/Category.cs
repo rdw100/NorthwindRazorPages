@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
 namespace RazorPagesNorthwind.Models
 {
@@ -11,7 +10,6 @@ namespace RazorPagesNorthwind.Models
             Products = new HashSet<Product>();
         }
 
-        [Key]
         public int CategoryId { get; set; }
         public string CategoryName { get; set; }
         public string Description { get; set; }
