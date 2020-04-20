@@ -25,6 +25,9 @@ namespace RazorPagesNorthwind.Data
             modelBuilder.Entity<EmployeeTerritory>().ToTable("EmployeeTerritories");
             modelBuilder.Entity<Territory>().ToTable("Territories");
             modelBuilder.Entity<Region>().ToTable("Regions");
+
+            modelBuilder.Entity<EmployeeTerritory>()
+                .HasKey(c => new { c.EmployeeId, c.TerritoryId});
         }
     }
 }

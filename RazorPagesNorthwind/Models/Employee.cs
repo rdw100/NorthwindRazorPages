@@ -1,20 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace RazorPagesNorthwind.Models
 {
     public partial class Employee
     {
-        public Employee()
-        {
-            EmployeeTerritories = new HashSet<EmployeeTerritory>();
-            InverseReportsToNavigation = new HashSet<Employee>();
-            //Territories = new HashSet<Territory>();
-            //Region = new HashSet<Region>();
-            Orders = new HashSet<Order>();
-        }
+        //public Employee()
+        //{
+        //    EmployeeTerritories = new HashSet<EmployeeTerritory>();
+        //    InverseReportsToNavigation = new HashSet<Employee>();
+        //    //Territories = new HashSet<Territory>();
+        //    //Region = new HashSet<Region>();
+        //    Orders = new HashSet<Order>();
+        //}
 
+        //[Key]
+        //[DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int EmployeeId { get; set; }
         public string LastName { get; set; }
         public string FirstName { get; set; }
