@@ -215,9 +215,14 @@ namespace RazorPagesNorthwind.Models
 
                 entity.Property(e => e.TitleOfCourtesy).HasMaxLength(25);
 
-                entity.HasMany(e => e.InverseReportsToNavigation)
-                .WithOne(e => e.ReportsToNavigation)
-                .HasForeignKey(e => e.ReportsToNavigation);
+                entity.HasMany(e => e.DirectReports)
+                .WithOne(e => e.Manager)
+                .HasForeignKey(e => e.Manager);
+
+                entity.HasOne(d => d.Manager) 
+                    .WithMany(p => p.DirectReports)
+                    .HasForeignKey(d => d.ReportsTo)
+                    .HasConstraintName("FK_Employees_Employees");
 
                 //entity.HasOne(d => d.ReportsToNavigation) // d.ReportsToNavigation
                 //    .WithMany(p => p.InverseReportsToNavigation)
@@ -323,7 +328,7 @@ namespace RazorPagesNorthwind.Models
                     .HasForeignKey(d => d.EmployeeId)
                     .HasConstraintName("FK_Orders_Employees");
 
-                entity.HasOne(d => d.ShipViaNavigation)
+                entity.HasOne(d => d.Shippers)
                     .WithMany(p => p.Orders)
                     .HasForeignKey(d => d.ShipVia)
                     .HasConstraintName("FK_Orders_Shippers");

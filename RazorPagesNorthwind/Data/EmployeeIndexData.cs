@@ -8,8 +8,8 @@ namespace RazorPagesNorthwind.Data.EmployeeViewModels
 {
     public class EmployeeIndexData
     {
-        public IEnumerable<Employee> idEmployees{ get; set; }
-        public IEnumerable<EmployeeTerritory> idEmployeeTerritories { get; set; }
-        public IEnumerable<Territory> idTerritories { get; set; }
+        public IEnumerable<Employee> Employees{ get; set; }
+        public IEnumerable<EmployeeTerritory> EmployeeTerritories { get; set; }
+        public IEnumerable<Territory> Territories { get; set; }
     }
 }

@@ -6,6 +6,7 @@ namespace RazorPagesNorthwind.Models
 {
     public partial class EmployeeTerritory
     {
+        [Key]
         public int EmployeeId { get; set; }
         public string TerritoryId { get; set; }
 

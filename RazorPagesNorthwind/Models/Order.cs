@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace RazorPagesNorthwind.Models
 {
@@ -15,7 +16,7 @@ namespace RazorPagesNorthwind.Models
         public int? EmployeeId { get; set; }
         public DateTime? OrderDate { get; set; }
         public DateTime? RequiredDate { get; set; }
-        public DateTime? ShippedDate { get; set; }
+        public DateTime? ShippedDate { get; set; } 
         public int? ShipVia { get; set; }
         public decimal? Freight { get; set; }
         public string ShipName { get; set; }
@@ -27,7 +28,10 @@ namespace RazorPagesNorthwind.Models
 
         public virtual Customer Customer { get; set; }
         public virtual Employee Employee { get; set; }
-        public virtual Shipper ShipViaNavigation { get; set; }
+        [ForeignKey("ShipVia")]
+        public virtual Shipper Shippers { get; set; }
+
         public virtual ICollection<OrderDetails> OrderDetails { get; set; }
+        public virtual ICollection<Product> Products { get; set; }
     }
 }

@@ -34,7 +34,7 @@ namespace RazorPagesNorthwind.Models
         public string Extension { get; set; }
         public byte[] Photo { get; set; }
         public string Notes { get; set; }
-        [ForeignKey("ReportsToNavigation")]
+        [ForeignKey("Manager")]
         public int? ReportsTo { get; set; }
         public string PhotoPath { get; set; }
 
@@ -45,9 +45,9 @@ namespace RazorPagesNorthwind.Models
         //public virtual Territory mTerritory { get; set; }
         //public virtual Region mRegion { get; set; }
 
-        public virtual Employee ReportsToNavigation { get; set; }
+        public virtual Employee Manager { get; set; }
         public virtual ICollection<EmployeeTerritory> EmployeeTerritories { get; set; }
-        public virtual ICollection<Employee> InverseReportsToNavigation { get; set; }
+        public virtual ICollection<Employee> DirectReports { get; set; }
         public virtual ICollection<Order> Orders { get; set; }
 
     }

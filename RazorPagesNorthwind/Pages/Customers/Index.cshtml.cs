@@ -19,11 +19,19 @@ namespace RazorPagesNorthwind.Pages.Customers
             _context = context;
         }
 
-        public IList<Customer> Customer { get;set; }
+        //public IList<Customer> Customer { get;set; }
+        public CustomerIndexData CustomerData { get; set; }
+        public int OrderID { get; set; }
+        public string ProductID { get; set; }
 
         public async Task OnGetAsync()
         {
-            Customer = await _context.Customers.ToListAsync();
+            //Customer = await _context.Customers.ToListAsync();
+            CustomerData = new CustomerIndexData();
+            CustomerData.Customers = await _context.Customers
+                .Include(customer => customer.Orders)
+                .AsNoTracking()
+                .ToListAsync();
         }
     }
 }

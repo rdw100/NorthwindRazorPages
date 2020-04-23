@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace RazorPagesNorthwind.Models
 {
@@ -9,6 +10,8 @@ namespace RazorPagesNorthwind.Models
         {
             CustomerCustomerDemo = new HashSet<CustomerCustomerDemo>();
             Orders = new HashSet<Order>();
+            Products = new HashSet<Product>();
+            OrderDetails = new HashSet<OrderDetails>();
         }
 
         public string CustomerId { get; set; }
@@ -24,6 +27,10 @@ namespace RazorPagesNorthwind.Models
         public string Fax { get; set; }
 
         public virtual ICollection<CustomerCustomerDemo> CustomerCustomerDemo { get; set; }
+        [ForeignKey("CustomerId")]
         public virtual ICollection<Order> Orders { get; set; }
+        //[ForeignKey("OrderID, ProductID")]
+        public virtual ICollection<OrderDetails> OrderDetails { get; set; }
+        public virtual ICollection<Product> Products { get; set; }
     }
 }

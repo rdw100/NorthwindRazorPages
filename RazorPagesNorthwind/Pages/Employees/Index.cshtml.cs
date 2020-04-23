@@ -27,7 +27,7 @@ namespace RazorPagesNorthwind.Pages.Employees
         public async Task OnGetAsync(int? id, int? employeeID)
         {
             EmployeeData = new EmployeeIndexData();
-            EmployeeData.idEmployees = await _context.Employees
+            EmployeeData.Employees = await _context.Employees
                 .Include(i => i.EmployeeTerritories)
                     .ThenInclude(i => i.Territory)
                 //.Include(i => i.EmployeeTerritories)
@@ -40,9 +40,9 @@ namespace RazorPagesNorthwind.Pages.Employees
             if (id != null)
             {
                 EmployeeID = id.Value;
-                Employee employee = EmployeeData.idEmployees.Single(
+                Employee employee = EmployeeData.Employees.Single(
                     i => i.EmployeeId == id.Value);
-                EmployeeData.idTerritories = employee.EmployeeTerritories.Select(s => s.Territory); //s.TerritoryId
+                EmployeeData.Territories = employee.EmployeeTerritories.Select(s => s.Territory); //s.TerritoryId
             }
 
             //if (TerritoryID != null)
