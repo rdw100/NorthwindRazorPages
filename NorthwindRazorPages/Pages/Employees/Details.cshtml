@@ -93,7 +93,7 @@
             @Html.DisplayNameFor(model => model.Employee.Photo)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Employee.Photo)
+            <img src="data:image;base64,@Convert.ToBase64String(Model.Employee.Photo,78,Model.Employee.Photo.Length-78)" />
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Employee.Notes)
@@ -111,7 +111,7 @@
             @Html.DisplayNameFor(model => model.Employee.PhotoPath)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Employee.PhotoPath)
+            @Html.DisplayFor(model => model.Employee.PhotoPath)            
         </dd>
     </dl>
 </div>
