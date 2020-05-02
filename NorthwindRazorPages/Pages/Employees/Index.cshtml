@@ -1,0 +1,98 @@
+﻿@page "{id:int?}"
+@model NorthwindRazorPages.Pages.Employees.IndexModel
+
+@{
+    ViewData["Title"] = "Employees";
+}
+
+<h1><i class="fas fa-user-clock"></i>Employees</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Hire Date
+            </th>
+            <th>
+                City
+            </th>
+            <th>
+                Territories
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.EmployeeData.Employees)
+        {
+            <tr>
+                <td>
+                    <img src="data:image;base64,@Convert.ToBase64String(item.Photo,78,item.Photo.Length-78)" height="100" width="100" />
+                    <br />
+                    @Html.DisplayFor(modelItem => item.FirstName) @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HireDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.City)
+                </td>
+
+                <td>
+                    @{
+                        foreach (var territories in item.EmployeeTerritories)
+                        {
+                            @territories.Territory.TerritoryId @:  @territories.Territory.TerritoryDescription  <br />
+                        }
+                    }
+                </td>
+
+                <td>
+                    <a asp-page="./Index" asp-route-id="@item.EmployeeId">Select</a> |
+                    <a asp-page="./Edit" asp-route-id="@item.EmployeeId">Edit</a> |
+                    <a asp-page="./Details" asp-route-id="@item.EmployeeId">Details</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.EmployeeId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@if (Model.EmployeeData.Territories != null)
+{
+    <h3>Territories Represented by Sales Employee</h3>
+    <table class="table">
+        <tr>
+            <th></th>
+            <th>Territory ID</th>
+            <th>Description</th>
+        </tr>
+
+        @foreach (var item in Model.EmployeeData.Territories)
+        {
+            string selectedRow = "";
+            if (item.TerritoryId == Model.TerritoryID)
+            {
+                selectedRow = "table-success";
+            }
+            <tr class="@selectedRow">
+                <td>
+                    <a asp-page="./Index" asp-route-territoryID="@item.TerritoryId">Select</a>
+                </td>
+                <td>
+                    @item.TerritoryId
+                </td>
+                <td>
+                    @item.TerritoryDescription
+                </td>
+            </tr>
+        }
+
+    </table>
+}

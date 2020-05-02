@@ -1,0 +1,33 @@
+﻿@page
+@model NorthwindRazorPages.Pages.AboutModel
+
+@{
+    ViewData["Title"] = "Total Products by Category";
+}
+
+<h1><i class="fas fa-table"></i>Reports</h1>
+
+<h2>Supplier Product Statistics</h2>
+
+<table>
+    <tr>
+        <th>
+            Category ID
+        </th>
+        <th>
+            Total Products
+        </th>
+    </tr>
+
+    @foreach (var item in Model.Suppliers)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CategoryId)
+            </td>
+            <td>
+                @item.ProductCount
+            </td>
+        </tr>
+    }
+</table>

@@ -1,0 +1,84 @@
+﻿@page
+@model NorthwindRazorPages.Pages.Suppliers.CreateVmModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Supplier</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="SupplierVM.CompanyName" class="control-label"></label>
+                <input asp-for="SupplierVM.CompanyName" class="form-control" />
+                <span asp-validation-for="SupplierVM.CompanyName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SupplierVM.ContactName" class="control-label"></label>
+                <input asp-for="SupplierVM.ContactName" class="form-control" />
+                <span asp-validation-for="SupplierVM.ContactName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SupplierVM.ContactTitle" class="control-label"></label>
+                <input asp-for="SupplierVM.ContactTitle" class="form-control" />
+                <span asp-validation-for="SupplierVM.ContactTitle" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SupplierVM.Address" class="control-label"></label>
+                <input asp-for="SupplierVM.Address" class="form-control" />
+                <span asp-validation-for="SupplierVM.Address" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SupplierVM.City" class="control-label"></label>
+                <input asp-for="SupplierVM.City" class="form-control" />
+                <span asp-validation-for="SupplierVM.City" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SupplierVM.Region" class="control-label"></label>
+                <input asp-for="SupplierVM.Region" class="form-control" />
+                <span asp-validation-for="SupplierVM.Region" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SupplierVM.PostalCode" class="control-label"></label>
+                <input asp-for="SupplierVM.PostalCode" class="form-control" />
+                <span asp-validation-for="SupplierVM.PostalCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SupplierVM.Country" class="control-label"></label>
+                <input asp-for="SupplierVM.Country" class="form-control" />
+                <span asp-validation-for="SupplierVM.Country" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SupplierVM.Phone" class="control-label"></label>
+                <input asp-for="SupplierVM.Phone" class="form-control" />
+                <span asp-validation-for="SupplierVM.Phone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SupplierVM.Fax" class="control-label"></label>
+                <input asp-for="SupplierVM.Fax" class="form-control" />
+                <span asp-validation-for="SupplierVM.Fax" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SupplierVM.HomePage" class="control-label"></label>
+                <input asp-for="SupplierVM.HomePage" class="form-control" />
+                <span asp-validation-for="SupplierVM.HomePage" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
