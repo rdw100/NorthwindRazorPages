@@ -12,9 +12,9 @@ namespace NorthwindRazorPages.Pages.Suppliers
 {
     public class DeleteModel : PageModel
     {
-        private readonly NorthwindRazorPages.Data.SupplierContext _context;
+        private readonly SupplierContext _context;
 
-        public DeleteModel(NorthwindRazorPages.Data.SupplierContext context)
+        public DeleteModel(SupplierContext context)
         {
             _context = context;
         }

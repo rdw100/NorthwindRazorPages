@@ -13,9 +13,9 @@ namespace NorthwindRazorPages.Pages.Suppliers
 {
     public class EditModel : PageModel
     {
-        private readonly NorthwindRazorPages.Data.SupplierContext _context;
+        private readonly SupplierContext _context;
 
-        public EditModel(NorthwindRazorPages.Data.SupplierContext context)
+        public EditModel(SupplierContext context)
         {
             _context = context;
         }

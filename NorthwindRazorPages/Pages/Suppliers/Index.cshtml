@@ -11,125 +11,134 @@
     <a asp-page="Create">Create New</a>
 </p>
 
-<form asp-page="./Index" method="get">
-    <div class="form-actions no-color">
-        <p>
-            Find by name:
-            <input type="text" name="SearchString" value="@Model.CurrentFilter" />
-            <input type="submit" value="Search" class="btn btn-primary" /> |
-            <a asp-page="./Index">Back to full List</a>
-        </p>
+<form method="post">
+    <div class="row">
+        <div class="col-md-6">
+            @Html.DropDownListFor(model => model.PageSize,
+                Model.MyPageSizeList)
+        </div>
+        <div class="col-md-6">
+            <div class="dropdown pull-right">
+                Find by name:
+                <input type="text" name="SearchString" value="@Model.CurrentFilter" />
+                <input type="submit" value="Search" class="btn btn-primary" /> |
+                <a asp-page="./Index" class="text-nowrap">Back to full List</a>
+            </div>
+        </div>
     </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    <a asp-page="./Index" asp-route-sortOrder="@Model.NameSort"
+                       asp-route-currentFilter="@Model.CurrentFilter">
+                        @Html.DisplayNameFor(model => model.Supplier[0].CompanyName)
+                    </a>
+                </th>
+                <th>
+                    <a asp-page="./Index" asp-route-sortOrder="@Model.ContactSort"
+                       asp-route-currentFilter="@Model.CurrentFilter">
+                        @Html.DisplayNameFor(model => model.Supplier[0].ContactName)
+                    </a>
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Supplier[0].ContactTitle)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Supplier[0].Address)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Supplier[0].City)
+                </th>
+                @*<th>
+                        @Html.DisplayNameFor(model => model.Supplier[0].Region)
+                    </th>*@
+                <th>
+                    @Html.DisplayNameFor(model => model.Supplier[0].PostalCode)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Supplier[0].Country)
+                </th>
+                @*<th>
+                        @Html.DisplayNameFor(model => model.Supplier[0].Phone)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Supplier[0].Fax)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Supplier[0].HomePage)
+                    </th>*@
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Supplier)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CompanyName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ContactName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ContactTitle)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Address)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.City)
+                    </td>
+                    @*<td>
+                            @Html.DisplayFor(modelItem => item.Region)
+                        </td>*@
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PostalCode)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Country)
+                    </td>
+                    @*<td>
+                            @Html.DisplayFor(modelItem => item.Phone)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Fax)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.HomePage)
+                        </td>*@
+                    <td>
+                        <a asp-page="./Edit" asp-route-id="@item.SupplierId">Edit</a> |
+                        <a asp-page="./Details" asp-route-id="@item.SupplierId">Details</a> |
+                        <a asp-page="./Delete" asp-route-id="@item.SupplierId">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    @{
+        bool prevDisabled = !Model.Supplier.HasPreviousPage ? true : false;
+        bool nextDisabled = !Model.Supplier.HasNextPage ? true : false;
+        var prevAriaDisabled = !Model.Supplier.HasPreviousPage ? "true" : "false";
+        var nextAriaDisabled = !Model.Supplier.HasNextPage ? "true" : "false";
+    }
+
+    <button name="prev" asp-page="./Index"
+            asp-route-sortOrder="@Model.CurrentSort"
+            asp-route-pageIndex="@(Model.Supplier.PageIndex - 1)"
+            asp-route-currentFilter="@Model.CurrentFilter"
+            asp-button-disabled="@prevDisabled"
+            class="btn btn-primary" aria-disabled="@prevAriaDisabled">
+        Previous
+    </button>
+    <button name="next" asp-page="./Index"
+            asp-route-sortOrder="@Model.CurrentSort"
+            asp-route-pageIndex="@(Model.Supplier.PageIndex + 1)"
+            asp-route-currentFilter="@Model.CurrentFilter"
+            asp-button-disabled="@nextDisabled"
+            class="btn btn-primary" aria-disabled="@nextAriaDisabled">
+        Next   
+    </button> 
 </form>
-
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                <a asp-page="./Index" asp-route-sortOrder="@Model.NameSort"
-                   asp-route-currentFilter="@Model.CurrentFilter">
-                    @Html.DisplayNameFor(model => model.Supplier[0].CompanyName)
-                </a>
-            </th>
-            <th>
-                <a asp-page="./Index" asp-route-sortOrder="@Model.ContactSort"
-                   asp-route-currentFilter="@Model.CurrentFilter">
-                    @Html.DisplayNameFor(model => model.Supplier[0].ContactName)
-                </a>
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Supplier[0].ContactTitle)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Supplier[0].Address)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Supplier[0].City)
-            </th>
-            @*<th>
-                @Html.DisplayNameFor(model => model.Supplier[0].Region)
-            </th>*@
-            <th>
-                @Html.DisplayNameFor(model => model.Supplier[0].PostalCode)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Supplier[0].Country)
-            </th>
-            @*<th>
-                @Html.DisplayNameFor(model => model.Supplier[0].Phone)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Supplier[0].Fax)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Supplier[0].HomePage)
-            </th>*@
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.Supplier)
-        {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.CompanyName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ContactName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ContactTitle)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Address)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.City)
-            </td>
-            @*<td>
-                @Html.DisplayFor(modelItem => item.Region)
-            </td>*@
-            <td>
-                @Html.DisplayFor(modelItem => item.PostalCode)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Country)
-            </td>
-            @*<td>
-                @Html.DisplayFor(modelItem => item.Phone)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Fax)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.HomePage)
-            </td>*@
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.SupplierId">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.SupplierId">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.SupplierId">Delete</a>
-            </td>
-        </tr>
-        }
-    </tbody>
-</table>
-
-@{
-    var prevDisabled = !Model.Supplier.HasPreviousPage ? "disabled" : "";
-    var nextDisabled = !Model.Supplier.HasNextPage ? "disabled" : "";
-}
-
-<a asp-page="./Index"
-   asp-route-sortOrder="@Model.CurrentSort"
-   asp-route-pageIndex="@(Model.Supplier.PageIndex - 1)"
-   asp-route-currentFilter="@Model.CurrentFilter"
-   class="btn btn-primary @prevDisabled">
-    Previous
-</a>
-<a asp-page="./Index"
-   asp-route-sortOrder="@Model.CurrentSort"
-   asp-route-pageIndex="@(Model.Supplier.PageIndex + 1)"
-   asp-route-currentFilter="@Model.CurrentFilter"
-   class="btn btn-primary @nextDisabled">
-    Next
-</a>

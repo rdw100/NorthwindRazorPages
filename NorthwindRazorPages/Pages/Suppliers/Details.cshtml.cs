@@ -12,9 +12,9 @@ namespace NorthwindRazorPages.Pages.Suppliers
 {
     public class DetailsModel : PageModel
     {
-        private readonly NorthwindRazorPages.Data.SupplierContext _context;
+        private readonly SupplierContext _context;
 
-        public DetailsModel(NorthwindRazorPages.Data.SupplierContext context)
+        public DetailsModel(SupplierContext context)
         {
             _context = context;
         }

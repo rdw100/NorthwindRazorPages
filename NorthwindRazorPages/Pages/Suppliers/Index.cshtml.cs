@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using NorthwindRazorPages.Data;
 using NorthwindRazorPages.Models;
@@ -12,23 +14,48 @@ namespace NorthwindRazorPages.Pages.Suppliers
 {
     public class IndexModel : PageModel
     {
-        private readonly NorthwindRazorPages.Data.SupplierContext _context;
+        private readonly SupplierContext _context;
 
-        public IndexModel(NorthwindRazorPages.Data.SupplierContext context)
+        public IndexModel(SupplierContext context)
         {
             _context = context;
         }
 
         public string NameSort { get; set; }
+
         public string ContactSort { get; set; }
+
         public string CurrentFilter { get; set; }
+
         public string CurrentSort { get; set; }
+
+        public int PageSize { get; set; } = 3;
+
+        public SelectList MyPageSizeList { get; set; }
 
         public PaginatedList<Supplier> Supplier { get; set; }
 
         public async Task OnGetAsync(string sortOrder,
-            string currentFilter, string searchString, int? pageIndex)
+            string currentFilter, string searchString, int? pageIndex, int? pageSize)
         {
+            MyPageSizeList = new SelectList(new int[] { 3, 5, 10 });
+
+            IQueryable<Supplier> supplierQuery = from s in _context.Suppliers
+                                                 select s;
+
+            Supplier = await PaginatedList<Supplier>.CreateAsync(
+                supplierQuery.AsNoTracking(), pageIndex ?? 1, PageSize);
+        }
+
+        public async Task<IActionResult> OnPostAsync(string sortOrder,
+            string currentFilter, string searchString, int? pageIndex, int? pageSize)
+        {
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
+
+            MyPageSizeList = new SelectList(new int[] { 3, 5, 10 });
             CurrentSort = sortOrder;
             NameSort = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ContactSort = sortOrder == "Contact" ? "contact_desc" : "Contact";
@@ -69,9 +96,10 @@ namespace NorthwindRazorPages.Pages.Suppliers
                     break;
             }
 
-            int pageSize = 3;
             Supplier = await PaginatedList<Supplier>.CreateAsync(
-                supplierQuery.AsNoTracking(), pageIndex ?? 1, pageSize);
+                supplierQuery.AsNoTracking(), pageIndex ?? 1, pageSize ?? 3);
+            
+            return Page();
         }
     }
 }

@@ -12,9 +12,9 @@ namespace NorthwindRazorPages.Pages.Suppliers
 {
     public class CreateModel : PageModel
     {
-        private readonly NorthwindRazorPages.Data.SupplierContext _context;
+        private readonly SupplierContext _context;
 
-        public CreateModel(NorthwindRazorPages.Data.SupplierContext context)
+        public CreateModel(SupplierContext context)
         {
             _context = context;
         }
