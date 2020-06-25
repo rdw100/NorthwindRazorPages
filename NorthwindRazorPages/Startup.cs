@@ -52,6 +52,7 @@ namespace NorthwindRazorPages
             }
 
             app.UseHttpsRedirection();
+
             app.UseStaticFiles();
 
             app.UseRouting();

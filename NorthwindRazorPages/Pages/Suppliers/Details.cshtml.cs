@@ -28,11 +28,11 @@ namespace NorthwindRazorPages.Pages.Suppliers
                 return NotFound();
             }
 
-            // Supplier = await _context.Suppliers.FirstOrDefaultAsync(m => m.SupplierId == id);
+            //Supplier = await _context.Suppliers.FirstOrDefaultAsync(m => m.SupplierId == id);
 
             Supplier = await _context.Suppliers
-                .Include(s => s.Products)
-                .ThenInclude(e => e.Category)
+                //.Include(s => s.Products)
+                //.ThenInclude(e => e.Category)
                 .AsNoTracking()
                 .FirstOrDefaultAsync(m => m.SupplierId == id);
 

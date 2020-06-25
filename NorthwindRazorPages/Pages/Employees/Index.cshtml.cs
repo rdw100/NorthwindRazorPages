@@ -30,9 +30,6 @@ namespace NorthwindRazorPages.Pages.Employees
             EmployeeData.Employees = await _context.Employees
                 .Include(i => i.EmployeeTerritories)
                     .ThenInclude(i => i.Territory)
-                //.Include(i => i.EmployeeTerritories)
-                //    .ThenInclude(i => i.Territory)
-                //    .ThenInclude(i => i.Region)
                 .AsNoTracking()
                 .OrderBy(i => i.LastName)
                 .ToArrayAsync();
@@ -44,14 +41,6 @@ namespace NorthwindRazorPages.Pages.Employees
                     i => i.EmployeeId == id.Value);
                 EmployeeData.Territories = employee.EmployeeTerritories.Select(s => s.Territory); //s.TerritoryId
             }
-
-            //if (TerritoryID != null)
-            //{
-            //    TerritoryID = id.Value;
-            //    var selectedTerritory = EmployeeData.idTerritories
-            //        .Where(x => x.TerritoryId == TerritoryID).Single();
-            //    EmployeeData.
-            //}
         }
     }
 }

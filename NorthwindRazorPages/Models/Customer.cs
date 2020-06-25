@@ -45,16 +45,20 @@ namespace NorthwindRazorPages.Models
 
         [StringLength(15)]
         public string Country { get; set; }
+
         [StringLength(24)]
         public string Phone { get; set; }
+
         [StringLength(24)]
         public string Fax { get; set; }
 
         public virtual ICollection<CustomerCustomerDemo> CustomerCustomerDemo { get; set; }
-        [ForeignKey("CustomerId")]
+
+        //[ForeignKey("CustomerId")]
         public virtual ICollection<Order> Orders { get; set; }
-        //[ForeignKey("OrderID, ProductID")]
+
         public virtual ICollection<OrderDetails> OrderDetails { get; set; }
+
         public virtual ICollection<Product> Products { get; set; }
     }
 }

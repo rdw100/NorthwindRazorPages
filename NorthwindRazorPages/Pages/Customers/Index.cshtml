@@ -23,36 +23,12 @@
             <th>
                 Company Name 
             </th>
-            @*<th>
-                Contact Name
-            </th>
-            <th>
-                Title
-            </th>*@
             <th>
                 Address
             </th>
             <th>
                 Orders
             </th>
-            @*<th>
-                City
-            </th>*@
-            @*<th>
-                @Html.DisplayNameFor(model => model.Customer[0].Region)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Customer[0].PostalCode)
-            </th>*@
-            @*<th>
-                Country
-            </th>*@
-            @*<th>
-                @Html.DisplayNameFor(model => model.Customer[0].Phone)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Customer[0].Fax)
-            </th>*@
             <th></th>
         </tr>
     </thead>
@@ -63,34 +39,10 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.CompanyName)
                 </td>
-                @*<td>
-                    @Html.DisplayFor(modelItem => item.ContactName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ContactTitle)
-                </td>*@
                 <td>
                     @Html.DisplayFor(modelItem => item.Address) <br />
                     @Html.DisplayFor(modelItem => item.City), @Html.DisplayFor(modelItem => item.Country)
                 </td>
-                @*<td>
-                    @Html.DisplayFor(modelItem => item.City)
-                </td>*@
-                @*<td>
-                    @Html.DisplayFor(modelItem => item.Region)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PostalCode)
-                </td>*@
-                @*<td>
-                    @Html.DisplayFor(modelItem => item.Country)
-                </td>*@
-                @*<td>
-                    @Html.DisplayFor(modelItem => item.Phone)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Fax)
-                </td>*@
                 <td>
                     @{
                         foreach (var orders in item.Orders)
@@ -99,22 +51,6 @@
                         }
                     }
                 </td>
-                @*<td>
-                    @{
-                        foreach (var details in item.OrderDetails)
-                        {
-                            @details.OrderId @:  @details.ProductId <br />
-                        }
-                    }
-                </td>
-                <td>
-                    @{
-                        foreach (var prods in item.Products)
-                        {
-                            @prods.ProductName @:  @prods.UnitsInStock <br />
-                        }
-                    }
-                </td>*@
                 <td>
                     <a asp-page="./Edit" asp-route-id="@item.CustomerId">Edit</a> |
                     <a asp-page="./Details" asp-route-id="@item.CustomerId">Details</a> |

@@ -9,6 +9,7 @@ namespace NorthwindRazorPages.Models
         public Order()
         {
             OrderDetails = new HashSet<OrderDetails>();
+            Products = new HashSet<Product>();
         }
 
         public int OrderId { get; set; }

@@ -11,6 +11,7 @@ namespace NorthwindRazorPages.Models
         public Supplier()
         {
             Products = new HashSet<Product>();
+            //Categories = new HashSet<Category>();
         }
 
         [Key]
@@ -58,5 +59,7 @@ namespace NorthwindRazorPages.Models
         public string Secret { get; set; }
 
         public virtual ICollection<Product> Products { get; set; }
+
+        //public virtual ICollection<Category> Categories { get; set; }
     }
 }

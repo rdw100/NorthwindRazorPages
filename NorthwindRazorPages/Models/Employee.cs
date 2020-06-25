@@ -7,17 +7,13 @@ namespace NorthwindRazorPages.Models
 {
     public partial class Employee
     {
-        //public Employee()
-        //{
-        //    EmployeeTerritories = new HashSet<EmployeeTerritory>();
-        //    InverseReportsToNavigation = new HashSet<Employee>();
-        //    //Territories = new HashSet<Territory>();
-        //    //Region = new HashSet<Region>();
-        //    Orders = new HashSet<Order>();
-        //}
+        public Employee()
+        {
+            EmployeeTerritories = new HashSet<EmployeeTerritory>();
+            DirectReports = new HashSet<Employee>();
+            Orders = new HashSet<Order>();
+        }
 
-        //[Key]
-        //[DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int EmployeeId { get; set; }
         public string LastName { get; set; }
         public string FirstName { get; set; }
@@ -37,18 +33,9 @@ namespace NorthwindRazorPages.Models
         [ForeignKey("Manager")]
         public int? ReportsTo { get; set; }
         public string PhotoPath { get; set; }
-
-        //public int RegionId { get; set; }
-        //public int TerritoryId { get; set; }
-
-        //public virtual EmployeeTerritory EmployeeTerritory { get; set; }
-        //public virtual Territory mTerritory { get; set; }
-        //public virtual Region mRegion { get; set; }
-
         public virtual Employee Manager { get; set; }
         public virtual ICollection<EmployeeTerritory> EmployeeTerritories { get; set; }
         public virtual ICollection<Employee> DirectReports { get; set; }
         public virtual ICollection<Order> Orders { get; set; }
-
     }
 }
